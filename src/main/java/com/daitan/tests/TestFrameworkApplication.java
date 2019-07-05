@@ -1,6 +1,7 @@
 package com.daitan.tests;
 
 import com.daitan.tests.health.TemplateHealthCheck;
+import com.daitan.tests.resources.CarResource;
 import com.daitan.tests.resources.HelloWorldResource;
 
 import io.dropwizard.Application;
@@ -14,7 +15,7 @@ public class TestFrameworkApplication extends Application<TestFrameworkConfigura
 
   @Override
   public String getName() {
-    return "Gustavo";
+    return "Some name";
   }
 
   @Override
@@ -32,5 +33,8 @@ public class TestFrameworkApplication extends Application<TestFrameworkConfigura
     final TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
     environment.healthChecks().register("template", healthCheck);
     environment.jersey().register(resource);
+
+    final CarResource carResource = new CarResource();
+    environment.jersey().register(carResource);
   }
 }
