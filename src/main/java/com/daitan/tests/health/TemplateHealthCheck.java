@@ -1,4 +1,4 @@
-package com.allianza.tests.health;
+package com.daitan.tests.health;
 
 import com.codahale.metrics.health.HealthCheck;
 

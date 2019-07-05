@@ -1,6 +1,6 @@
-package com.allianza.tests.resources;
+package com.daitan.tests.resources;
 
-import com.allianza.tests.api.Saying;
+import com.daitan.tests.api.Saying;
 import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.GET;

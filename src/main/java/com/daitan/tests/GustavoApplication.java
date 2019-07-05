@@ -1,7 +1,7 @@
-package com.allianza.tests;
+package com.daitan.tests;
 
-import com.allianza.tests.health.TemplateHealthCheck;
-import com.allianza.tests.resources.HelloWorldResource;
+import com.daitan.tests.health.TemplateHealthCheck;
+import com.daitan.tests.resources.HelloWorldResource;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;

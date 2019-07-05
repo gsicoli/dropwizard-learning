@@ -1,4 +1,4 @@
-package com.allianza.tests;
+package com.daitan.tests;
 
 import io.dropwizard.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
