@@ -7,9 +7,9 @@ import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-public class GustavoApplication extends Application<GustavoConfiguration> {
+public class TestFrameworkApplication extends Application<TestFrameworkConfiguration> {
   public static void main(final String[] args) throws Exception {
-    new GustavoApplication().run(args);
+    new TestFrameworkApplication().run(args);
   }
 
   @Override
@@ -18,12 +18,12 @@ public class GustavoApplication extends Application<GustavoConfiguration> {
   }
 
   @Override
-  public void initialize(final Bootstrap<GustavoConfiguration> bootstrap) {
+  public void initialize(final Bootstrap<TestFrameworkConfiguration> bootstrap) {
     // TODO: application initialization
   }
 
   @Override
-  public void run(final GustavoConfiguration configuration,
+  public void run(final TestFrameworkConfiguration configuration,
                   final Environment environment) {
     final HelloWorldResource resource = new HelloWorldResource(
       configuration.getTemplate(),
