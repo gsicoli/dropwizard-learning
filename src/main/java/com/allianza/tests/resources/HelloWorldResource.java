@@ -1,6 +1,6 @@
-package com.example.helloworld.resources;
+package com.allianza.tests.resources;
 
-import com.example.helloworld.api.Saying;
+import com.allianza.tests.api.Saying;
 import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.GET;

@@ -1,5 +1,8 @@
 package com.allianza.tests;
 
+import com.allianza.tests.health.TemplateHealthCheck;
+import com.allianza.tests.resources.HelloWorldResource;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;

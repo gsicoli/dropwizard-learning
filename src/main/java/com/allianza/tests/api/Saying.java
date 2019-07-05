@@ -1,4 +1,4 @@
-package com.example.helloworld.api;
+package com.allianza.tests.api;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.hibernate.validator.constraints.Length;
