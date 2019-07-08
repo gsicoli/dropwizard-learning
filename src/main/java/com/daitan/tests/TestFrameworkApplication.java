@@ -1,12 +1,11 @@
 package com.daitan.tests;
 
-import com.daitan.tests.health.TemplateHealthCheck;
-import com.daitan.tests.resources.CarResource;
-import com.daitan.tests.resources.HelloWorldResource;
-
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+
+import com.daitan.tests.resources.ResultsResource;
+import com.daitan.tests.resources.TeamsResource;
 
 public class TestFrameworkApplication extends Application<TestFrameworkConfiguration> {
   public static void main(final String[] args) throws Exception {
@@ -20,21 +19,15 @@ public class TestFrameworkApplication extends Application<TestFrameworkConfigura
 
   @Override
   public void initialize(final Bootstrap<TestFrameworkConfiguration> bootstrap) {
-    // TODO: application initialization
   }
 
   @Override
   public void run(final TestFrameworkConfiguration configuration,
                   final Environment environment) {
-    final HelloWorldResource resource = new HelloWorldResource(
-      configuration.getTemplate(),
-      configuration.getDefaultName()
-    );
-    final TemplateHealthCheck healthCheck = new TemplateHealthCheck(configuration.getTemplate());
-    environment.healthChecks().register("template", healthCheck);
-    environment.jersey().register(resource);
+    final TeamsResource teamsResource = new TeamsResource();
+    environment.jersey().register(teamsResource);
 
-    final CarResource carResource = new CarResource();
-    environment.jersey().register(carResource);
+    final ResultsResource resultsResource = new ResultsResource();
+    environment.jersey().register(resultsResource);
   }
 }
