@@ -18,7 +18,7 @@ public class ResultsResource {
   @GET
   @Timed
   @Path("/{time1}/{time2}")
-  public Results removeCar(
+  public Results matchScore(
     @PathParam("time1") String team1,
     @PathParam("time2") String team2) {
       Results result = new Results(team1, team2);
