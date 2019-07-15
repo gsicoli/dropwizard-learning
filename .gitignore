@@ -1,6 +1,8 @@
 target
 .classpath
+.idea
 .project
 .settings
 .vscode
+rest-api.iml
 dependency-reduced-pom.xml
