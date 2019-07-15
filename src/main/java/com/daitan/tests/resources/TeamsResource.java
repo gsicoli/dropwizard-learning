@@ -9,18 +9,19 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.DefaultValue;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/v1/times")
 @Produces(MediaType.APPLICATION_JSON)
 public class TeamsResource {
   private final String[] times = {
     "Argentina",
-    "Bolívia",
+    "Bolivia",
     "Brasil",
     "Chile",
-    "Colômbia",
+    "Colombia",
     "Equador",
-    "Japão",
+    "Japao",
     "Paraguai",
     "Peru",
     "Qatar",
@@ -32,7 +33,7 @@ public class TeamsResource {
 
   @GET
   @Timed
-  public String[] getTimes(
+  public Response getTimes(
     @QueryParam("offset") @DefaultValue("-1") IntParam _offset,
     @QueryParam("limit") @DefaultValue("-1") IntParam _limit) {
 
@@ -50,6 +51,6 @@ public class TeamsResource {
       timesPag[i] = times[i + offset];
     }
 
-    return timesPag;
+    return Response.ok(timesPag).build();
   }
 }

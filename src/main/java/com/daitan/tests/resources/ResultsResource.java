@@ -4,6 +4,7 @@ import com.codahale.metrics.annotation.Timed;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.daitan.tests.api.MatchScore;
 import com.daitan.tests.db.InMemory;
@@ -19,22 +20,28 @@ public class ResultsResource {
 
   @POST
   @Timed
-  public void addMatchScore(MatchScore matchScore) {
+  public Response addMatchScore(MatchScore matchScore) {
     myLocalDb.addResult(matchScore);
+    return Response.ok().build();
   }
 
   @DELETE
   @Timed
-  public void clearMatchScore(MatchScore matchScore) {
+  public Response clearMatchScore(MatchScore matchScore) {
     myLocalDb.clear();
+    return Response.ok().build();
   }
 
   @GET
   @Timed
   @Path("/{time1}/{time2}")
-  public MatchScore matchScore(
+  public Response matchScore(
     @PathParam("time1") String team1,
     @PathParam("time2") String team2) {
-      return myLocalDb.getMatchResult(team1, team2);
+    MatchScore score = myLocalDb.getMatchResult(team1, team2);
+    if (score == null) {
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    return Response.ok(score).build();
   }
 }
