@@ -6,8 +6,35 @@ import java.util.ArrayList;
 
 public class InMemory {
   private static final ArrayList<GameData> scoreBoard = new ArrayList<>();
+  private final String[] times = {
+      "Argentina",
+      "Bolivia",
+      "Brasil",
+      "Chile",
+      "Colombia",
+      "Equador",
+      "Japao",
+      "Paraguai",
+      "Peru",
+      "Qatar",
+      "Uruguai",
+      "Venezuela"
+  };
 
-  public void addResult(MatchScore newScore) {
+  public boolean addResult(MatchScore newScore) {
+    for (GameData game: scoreBoard) {
+      if(game.isCorrespondingMatch(newScore.team1.name, newScore.team2.name)) {
+        return false;
+      }
+    }
+
+    GameData currentMatchScore = new GameData(newScore);
+    scoreBoard.add(currentMatchScore);
+
+    return true;
+  }
+
+  public boolean updateResult(MatchScore newScore) {
     int gameIndex = -1;
     for (GameData game: scoreBoard) {
       if(game.isCorrespondingMatch(newScore.team1.name, newScore.team2.name)) {
@@ -15,12 +42,14 @@ public class InMemory {
       }
     }
 
-    GameData currentMatchScore = new GameData(newScore);
     if (gameIndex == -1) {
-      scoreBoard.add(currentMatchScore);
-    } else {
-      scoreBoard.set(gameIndex, currentMatchScore);
+      return false;
     }
+
+    GameData currentMatchScore = new GameData(newScore);
+    scoreBoard.set(gameIndex, currentMatchScore);
+
+    return true;
   }
 
   public MatchScore getMatchResult(String t1, String t2) {

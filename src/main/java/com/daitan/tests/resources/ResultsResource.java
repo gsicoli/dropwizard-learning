@@ -21,8 +21,21 @@ public class ResultsResource {
   @POST
   @Timed
   public Response addMatchScore(MatchScore matchScore) {
-    myLocalDb.addResult(matchScore);
-    return Response.ok().build();
+    if (myLocalDb.addResult(matchScore)) {
+      return Response.ok().build();
+    } else {
+      return Response.status(Response.Status.CONFLICT).build();
+    }
+  }
+
+  @PUT
+  @Timed
+  public Response updateMatchScore(MatchScore matchScore) {
+    if (myLocalDb.updateResult(matchScore)) {
+      return Response.ok().build();
+    } else {
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
   }
 
   @DELETE
