@@ -45,6 +45,19 @@ public class ResultsResource {
     return Response.ok().build();
   }
 
+  @DELETE
+  @Timed
+  @Path("/{time1}/{time2}")
+  public Response deleteMatchScore(
+      @PathParam("time1") String team1,
+      @PathParam("time2") String team2) {
+    MatchScore score = myLocalDb.deleteMatchResult(team1, team2);
+    if (score == null) {
+      return Response.status(Response.Status.NOT_FOUND).build();
+    }
+    return Response.ok(score).build();
+  }
+
   @GET
   @Timed
   @Path("/{time1}/{time2}")

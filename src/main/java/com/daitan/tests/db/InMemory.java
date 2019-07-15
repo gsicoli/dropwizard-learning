@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class InMemory {
   private static final ArrayList<GameData> scoreBoard = new ArrayList<>();
-  private final String[] times = {
+  public static final String[] times = {
       "Argentina",
       "Bolivia",
       "Brasil",
@@ -55,6 +55,16 @@ public class InMemory {
   public MatchScore getMatchResult(String t1, String t2) {
     for (GameData game: scoreBoard) {
       if(game.isCorrespondingMatch(t1, t2)) {
+        return game.getScore();
+      }
+    }
+    return null;
+  }
+
+  public MatchScore deleteMatchResult(String t1, String t2) {
+    for (GameData game: scoreBoard) {
+      if(game.isCorrespondingMatch(t1, t2)) {
+        scoreBoard.remove(game);
         return game.getScore();
       }
     }

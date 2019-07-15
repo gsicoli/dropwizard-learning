@@ -1,6 +1,7 @@
 package com.daitan.tests.resources;
 
 import com.codahale.metrics.annotation.Timed;
+import com.daitan.tests.db.InMemory;
 import io.dropwizard.jersey.params.IntParam;
 import java.lang.Math;
 import javax.ws.rs.GET;
@@ -14,21 +15,6 @@ import javax.ws.rs.core.Response;
 @Path("/v1/times")
 @Produces(MediaType.APPLICATION_JSON)
 public class TeamsResource {
-  private final String[] times = {
-    "Argentina",
-    "Bolivia",
-    "Brasil",
-    "Chile",
-    "Colombia",
-    "Equador",
-    "Japao",
-    "Paraguai",
-    "Peru",
-    "Qatar",
-    "Uruguai",
-    "Venezuela"
-  };
-
   public TeamsResource() {}
 
   @GET
@@ -36,7 +22,7 @@ public class TeamsResource {
   public Response getTimes(
     @QueryParam("offset") @DefaultValue("-1") IntParam _offset,
     @QueryParam("limit") @DefaultValue("-1") IntParam _limit) {
-
+    String[] times = InMemory.times;
     int offset = _offset.get();
     int limit = _limit.get();
 
