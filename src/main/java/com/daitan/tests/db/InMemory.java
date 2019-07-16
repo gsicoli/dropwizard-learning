@@ -3,10 +3,11 @@ package com.daitan.tests.db;
 import com.daitan.tests.api.MatchScore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class InMemory {
   private static final ArrayList<GameData> scoreBoard = new ArrayList<>();
-  public static final String[] times = {
+  public static final String[] teams = {
       "Argentina",
       "Bolivia",
       "Brasil",
@@ -21,7 +22,29 @@ public class InMemory {
       "Venezuela"
   };
 
+  private boolean areTeamsValid(MatchScore score) {
+    ArrayList<String> teamList = new ArrayList<>(Arrays.asList(teams));
+    String team1 = score.team1.name;
+    String team2 = score.team2.name;
+
+    if (team1.equals(team2)) {
+      return false;
+    }
+    if (!teamList.contains(team1)) {
+      return false;
+    }
+    if (!teamList.contains(team2)) {
+      return false;
+    }
+
+    return true;
+  }
+
   public boolean addResult(MatchScore newScore) {
+    if (!areTeamsValid(newScore)) {
+      return false;
+    }
+
     for (GameData game: scoreBoard) {
       if(game.isCorrespondingMatch(newScore.team1.name, newScore.team2.name)) {
         return false;

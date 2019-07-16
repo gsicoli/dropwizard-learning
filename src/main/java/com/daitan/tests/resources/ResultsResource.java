@@ -24,7 +24,7 @@ public class ResultsResource {
     if (myLocalDb.addResult(matchScore)) {
       return Response.ok().build();
     } else {
-      return Response.status(Response.Status.CONFLICT).build();
+      return Response.serverError().build();
     }
   }
 

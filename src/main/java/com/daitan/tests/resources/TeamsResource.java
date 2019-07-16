@@ -22,7 +22,7 @@ public class TeamsResource {
   public Response getTimes(
     @QueryParam("offset") @DefaultValue("-1") IntParam _offset,
     @QueryParam("limit") @DefaultValue("-1") IntParam _limit) {
-    String[] times = InMemory.times;
+    String[] teams = InMemory.teams;
     int offset = _offset.get();
     int limit = _limit.get();
 
@@ -31,10 +31,10 @@ public class TeamsResource {
       limit = limit == -1 ? 10 : limit;
     }
 
-    int arraySize = Math.min(limit, (times.length-offset));
+    int arraySize = Math.min(limit, (teams.length-offset));
     String[] timesPag = new String[arraySize];
-    for (int i = 0; i < limit && (i + offset) < times.length; i++) {
-      timesPag[i] = times[i + offset];
+    for (int i = 0; i < limit && (i + offset) < teams.length; i++) {
+      timesPag[i] = teams[i + offset];
     }
 
     return Response.ok(timesPag).build();
